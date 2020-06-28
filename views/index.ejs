@@ -1,0 +1,52 @@
+
+<%- include('partials/header') %>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Hello <%= user.firstName %></h1>
+        <p class="lead">Enrollment Data</p>
+        <button onclick="location.href = '/create';" type="submit" class="btn btn-primary">Create an Enrollment</button>
+        
+       
+        <button onclick="location.href = '/logout';">Logout</button>
+       
+        
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">highSchoolGPA</th>
+            <th scope="col">gender</th>
+            <th scope="col">logisticStatus</th>
+            <th scope="col">financialAid</th>
+            <th scope="col">club</th>
+            <th scope="col">sportTeam</th>
+            <th scope="col">prediction</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% enrollments.forEach(function(enrollment){ %>
+                <tr onclick="location.href = '/enrollments/<%=enrollment._id%>';">
+                        <td><%=enrollment.firstName%></td>
+                        <td><%= enrollment.lastName %></td>
+                        <td><%= enrollment.highSchoolGPA %></td>
+                        <td><%= enrollment.gender %></td>
+                        <td><%= enrollment.logisticsStatus %></td>
+                        <td><%= enrollment.financialAid %></td>
+                        <td><%= enrollment.club %></td>
+                        <td><%= enrollment.sportTeam %></td>
+                        <td><%= enrollment.prediction %></td>
+                 </tr> 
+        
+        <% }) %>
+          
+          
+        </tbody>
+      </table>
+</div>
+
+
+<%- include('partials/footer') %>

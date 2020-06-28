@@ -1,0 +1,138 @@
+<%- include('partials/header') %>
+<body>
+
+<div class='container'>
+  
+    
+    <div class="row d-flex justify-content-center">
+        <div class="jumbotron">
+            <h1 class="display-4">Update an Enrollment</h1>
+            <button type="submit" onclick="location.href = '/enrollments';" class="btn btn-dark ">Go back</button>
+            <form method="post" action="/enrollments/<%= enrollment._id %>/delete">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        <div class="col-6 d-flex justify-content-center">
+            <div  class="c100 p<%=enrollment.prediction%> large">
+                <span><%=enrollment.prediction%></span>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-6">
+            <div>
+                <form method="POST" action="/enrollments/<%=enrollment._id%>/edit">
+                    <div class="form-group">
+                    <label  for="firstname">FirstName</label>
+                    <input  id="firstname" value="<%=enrollment.firstName%>" type="text" name="firstName" class="form-control" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">LastName</label>
+                        <input id="lastname"  value="<%=enrollment.lastName%>" type="text" name="lastName" class="form-control" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="highschoolgpa">highSchoolGPA</label>
+                        <input id="highschoolgpa"  value="<%=enrollment.highSchoolGPA%>" type="text" name="highSchoolGPA" class="form-control" required>
+                    </div>
+            
+                    <% if(enrollment.gender === "Male"){ %>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="male" value="Male" checked name="gender" class="custom-control-input">
+                              <label class="custom-control-label" for="male">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="female" value="Female" name="gender" class="custom-control-input">
+                              <label class="custom-control-label" for="female">Female</label>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="male" value="Male" name="gender" class="custom-control-input">
+                              <label class="custom-control-label" for="male">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="female" checked value="Female" name="gender" class="custom-control-input">
+                              <label class="custom-control-label" for="female">Female</label>
+                            </div>
+                          </div>
+                    <% } %>
+            
+                    <% if(enrollment.logisticsStatus === "Resident") { %>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                              <input checked type="radio" id="Resident" value="Resident" name="logisticsStatus" class="custom-control-input">
+                              <label class="custom-control-label" for="Resident">Resident</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="Commuter" value="Commuter" name="logisticsStatus" class="custom-control-input">
+                              <label class="custom-control-label" for="Commuter">Commuter</label>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                              <input type="radio" id="Resident" value="Resident" name="logisticsStatus" class="custom-control-input">
+                              <label class="custom-control-label" for="Resident">Resident</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input type="radio" checked id="Commuter" value="Commuter" name="logisticsStatus" class="custom-control-input">
+                              <label class="custom-control-label" for="Commuter">Commuter</label>
+                            </div>
+                          </div>
+                    <% } %>
+                    
+                    
+                    
+                    <div class="form-group form-check">
+                        <% if(enrollment.financialAid){ %>
+                            <input type="checkbox" checked name="financialAid" class="form-check-input" id="financialAid">
+                        <% } else { %>
+                            <input type="checkbox"  name="financialAid" class="form-check-input" id="financialAid">
+                        <% } %>
+                    
+                    <label class="form-check-label" for="financialAid">financialAid</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <% if(enrollment.club){ %>
+                            <input type="checkbox" checked name="club" class="form-check-input" id="club">
+                        <% } else { %>
+                            <input type="checkbox"  name="club" class="form-check-input" id="club">
+                        <% } %>
+                        <label class="form-check-label" for="club">club</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <% if(enrollment.sportTeam){ %>
+                            <input type="checkbox" checked name="sportTeam" class="form-check-input" id="sportTeam">
+                        <% } else { %>
+                            <input type="checkbox"  name="sportTeam" class="form-check-input" id="sportTeam">
+                        <% } %>
+                        <label class="form-check-label" for="club">sportTeam</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Update</button>
+            
+                </form>
+                
+                
+                
+            </div>
+        </div>
+        
+    </div>
+  
+
+  
+
+
+
+</div>
+<%- include('partials/footer') %>
+
+
+
+
